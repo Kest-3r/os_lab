@@ -1,12 +1,10 @@
 #include <iostream>
 #include <vector>
-#include <unistd.h>
 #include "process.h"
 
 int main(){
     int process_num;
 
-    std::cout<<"Current Process ID: "<<getpid()<<"\n";
     std::cout<<"Number of process:";
     std::cin>>process_num;
 
@@ -40,9 +38,9 @@ int main(){
         }
     }
 
-    //list process details
+    //list process details in table
+    std::cout<<"\tID  Burst Time \t Waiting Time \t Turnaround Time \n";
     for(int i = 0; i< process_num; i++){
-        std::cout<<"\tID  Burst Time \t Waiting Time \t Turnaround Time \n";
         std::cout<<"Process\t"<<process[i].id<<"\t"<<process[i].burst_time<<"\t\t"<<process[i].waiting_time<<"\t\t"<<process[i].turnaround_time<<"\n";
     }
 }
