@@ -26,9 +26,25 @@ int main(){
     //     std::cout<<process[i].id<<"\t"<<process[i].burst_time<<"\t"<<process[i].waiting_time<<"\t"<<process[i].turnaround_time<<"\n";
     // }
 
+    //bubble sort
+    for(int i = 0; i< process_num-1; i++){
+        for (int j = 0; j < process_num-i-1; j++){
+            //earliest arrival time (FCFS)
+            if(process[j].arrival_time>process[j+1].arrival_time){
+                std::swap(process[j],process[j+1]);
+            }
+        }
+    }
+
+    //execution
     int global_time = 0;
     for(int i = 0; i< process_num; i++){
         if(process[i].is_complete==false){
+            //no job at global time check, skips to the arrival time of the current process
+            if (global_time < process[i].arrival_time) {
+            global_time = process[i].arrival_time; 
+            }
+
             //initialize process
             process[i].waiting_time = global_time - process[i].arrival_time;
             global_time += process[i].burst_time;
