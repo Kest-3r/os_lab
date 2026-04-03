@@ -51,18 +51,10 @@ int main(){
     //execution
     int global_time = 0;
     for(int i = 0; i< process_num; i++){
-        if(process[i].is_complete==false){
-            //no job at global time check, skips to the arrival time of the current process
-            if (global_time < process[i].arrival_time) {
-            global_time = process[i].arrival_time; 
-            }
             //initialize process
             process[i].waiting_time = global_time - process[i].arrival_time;
             global_time += process[i].burst_time;
-            //process completed
-            process[i].is_complete = true;
             process[i].turnaround_time = process[i].waiting_time + process[i].burst_time;
-        }
     }
 
     //list process details in table
